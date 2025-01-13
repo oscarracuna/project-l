@@ -1,6 +1,7 @@
 package handlers
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/oscarracuna/project-l/pkg/config"
@@ -25,9 +26,19 @@ func NewHandlers(r *Repository) {
 }
 
 func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, "home.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w, r, "home.page.tmpl", &models.TemplateData{})
 }
 
 func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
-	render.RenderTemplate(w, "about.page.tmpl", &models.TemplateData{})
+	render.RenderTemplate(w, r, "about.page.tmpl", &models.TemplateData{})
+}
+
+func (m *Repository) Login(w http.ResponseWriter, r *http.Request) {
+	render.RenderTemplate(w, r, "login.page.tmpl", &models.TemplateData{})
+}
+
+func (m *Repository) PostLogin(w http.ResponseWriter, r *http.Request) {
+	in1 := r.Form.Get("input1")
+	in2 := r.Form.Get("input2")
+	w.Write([]byte(fmt.Sprintf("Input 1 = %s and input 2 = %s", in1, in2)))
 }
