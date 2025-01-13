@@ -27,3 +27,7 @@ func NewHandlers(r *Repository) {
 func (m *Repository) Home(w http.ResponseWriter, r *http.Request) {
 	render.RenderTemplate(w, "home.page.tmpl", &models.TemplateData{})
 }
+
+func (m *Repository) About(w http.ResponseWriter, r *http.Request) {
+	render.RenderTemplate(w, "about.page.tmpl", &models.TemplateData{})
+}
